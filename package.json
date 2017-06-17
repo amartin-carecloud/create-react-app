@@ -29,5 +29,8 @@
     "yarn.lock": [
       "git rm --cached"
     ]
+  },
+  "dependencies": {
+    "flow-bin": "^0.47.0"
   }
 }
