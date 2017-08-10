@@ -146,6 +146,8 @@ module.exports = function(
   }
 
   // Create symlinks
+  console.log();
+  console.log(`Creating Symlinks`);
   CareCloud.createAppSymlinks();
 
   // Change displayed command to yarn instead of yarnpkg
