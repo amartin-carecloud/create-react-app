@@ -6,12 +6,10 @@
  * 
  */
 
-const packageScripts = require('./package-scripts');
-const createAppSymlinks = require('./symlinks');
+const packages = require('./packages');
 const webpack = require('./webpack');
 
 module.exports = {
-  packageScripts,
-  createAppSymlinks,
+  packages,
   webpack,
 };

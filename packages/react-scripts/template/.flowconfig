@@ -17,4 +17,3 @@ module.name_mapper='^\(.*\)\.css$' -> '@carecloud/react-scripts/config/jest/CSSS
 module.name_mapper='^\(.*\)\.\(jpg\|png\|gif\|eot\|svg\|ttf\|woff\|woff2\|mp4\|webm\)$' -> '@carecloud/react-scripts/config/jest/FileStub'
 
 suppress_type=$FlowIssue
-suppress_type=$FlowFixMe

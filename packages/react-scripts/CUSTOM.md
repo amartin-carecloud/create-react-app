@@ -51,4 +51,3 @@ Here we added a couple of more custom commands to start and build our applicatio
     eject: 'react-scripts eject',
   };
 ```
-

@@ -4,5 +4,8 @@
  */
 
 module.exports = {
-  PRESETS: [require.resolve('babel-preset-stage-0')],
+  BABEL: {
+    PRESETS: [require.resolve('babel-preset-stage-0')],
+    PLUGINS: [require.resolve('@extjs/reactor-babel-plugin')],
+  },
 };

@@ -1,35 +1,29 @@
-/**
- * Application store that is hydrated by a rootReducer and initialState.
- * We configure the store with additional middleware that includes a
- * logger for Development and Epics from the Redux-Observable library.
- *
- * Our Root Reducer sets up our initial application state.
- *
- */
 import { applyMiddleware, compose, createStore } from 'redux';
-import { createLogger } from 'redux-logger';
 import { createEpicMiddleware } from 'redux-observable';
+import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 
-import rootEpic from './rootEpic';
 import rootReducer from './rootReducer';
+import rootEpics from './rootEpics';
 
-const epicMiddleware = createEpicMiddleware(rootEpic);
-const Middleware = [epicMiddleware, thunkMiddleware];
+const epicMiddleware = createEpicMiddleware(rootEpics);
+const Middleware = [thunkMiddleware, epicMiddleware];
 
 let superCompose = compose;
 
 if (process.env.NODE_ENV !== 'production') {
-  Middleware.push(
-    createLogger({
-      collapsed: (getState, action) => false,
-    })
-  );
-  // This allows us to support the REDUX DevTools Extension
-  superCompose = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  Middleware.push(createLogger());
+  // This allows us to support the REDUX DevTools Extension, but not all browsers support it
+  if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
+    superCompose = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+  } else {
+    superCompose = v => {
+      return v;
+    };
+  }
 }
 
 const configureStore = () =>
   createStore(rootReducer, superCompose(applyMiddleware(...Middleware)));
 
-export default configureStore;
+export default configureStore();
